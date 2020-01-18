@@ -6,15 +6,12 @@ import Erros from './componentes/Erros';
 
 class FormularioAutor extends Component {
 
-    constructor() {
-        super()
-        // só podemos guardar estado na variável state
+    constructor(props) {
+        super(props)
         this.state = { lista: [], nome: '', email: '', senha: '' };
-        this.enviaForm = this.enviaForm.bind(this);
-        this.setDados = this.setDados.bind(this);
     }
 
-    enviaForm(evento) {
+    enviaForm = (evento) => {
         evento.preventDefault();
         $.ajax({
             url: "http://localhost:8080/api/autores",
@@ -31,7 +28,7 @@ class FormularioAutor extends Component {
         })
     }
 
-    setDados(nomeInput, evento) {
+    setDados = (nomeInput, evento) => {
         this.setState({ [nomeInput]: evento.target.value });
     }
     
@@ -50,9 +47,6 @@ class FormularioAutor extends Component {
 }
 
 export default class AutorBox extends Component {
-    // antes dele invocar o render: componentWillMount (funciona, renderiza, disponibiliza a lista e renderiza dnv)
-    // renderiza, e então chama: componentDidMount (renderiza, funciona, disponibiliza a lista e renderiza dnv)
-    
     render() {
         return (
             <div>
